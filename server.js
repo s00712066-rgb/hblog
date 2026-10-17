@@ -4,7 +4,7 @@ const app = express();
 
 const {connectDB} = require('./db.js');
 
-const {validate} = require('./validation.js');
+const postRoute = require("./post.js");
 
 const cors = require("cors");
 
@@ -48,6 +48,9 @@ getposts();
 async function startServer(){
   try{
     db =await connectDB();
+    
+    app.locals.db = db;
+    app.use(postRoute);
     
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
