@@ -46,7 +46,8 @@ router.patch('/api/posts/:id', async (req,res) => {
       return res.status(200).json({message:"Blog updated successfully"});
     }
     catch(error){
-      console.log("Something went wrong");
+      console.error(error);
+      return res.status(500).json({message:"Something went wrong"});
     }
    }
   }

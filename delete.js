@@ -4,7 +4,7 @@ const router = express.Router();
 
 const {ObjectId} = require("mongodb");
 
-router.delete('/api/post/:id', async (req,res) => {
+router.delete('/api/posts/:id', async (req,res) => {
   
   if (!ObjectId.isValid(req.params.id)){
     return res.status(400).json({message:"Invalid blog Id"});
@@ -24,6 +24,7 @@ router.delete('/api/post/:id', async (req,res) => {
     return res.status(200).json({message:'Blog successfully deleted'});
     }
     catch(error){
+      console.error(error)
       return res.status(500).json({message:'Something went wrong'});
     }
   }

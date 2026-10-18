@@ -6,7 +6,7 @@ const {connectDB} = require('./db.js');
 
 const router = express.Router();
 
-router.post('/api/blog', (req,res) => {
+router.post('/api/posts', (req,res) => {
     
  const error = validate(req.body);
  if(error){
@@ -35,6 +35,7 @@ router.post('/api/blog', (req,res) => {
      return res.status(201).json({message:"blog created successfully", blog:saved })
     }
     catch(error){
+      console.error(error);
       return res.status(500).json({message: "Something went wrong"});      
     }
   }

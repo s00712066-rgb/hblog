@@ -42,6 +42,7 @@ async function startServer(){
   }
   catch(error){
     console.error("Database connection failed", error.message);
+    return res.status(500).json({message:"Somethingwwent wrong"});
   }
 }
 
