@@ -8,6 +8,8 @@ const getRoute = require("./blogs.js");
 
 const postRoute = require("./post.js");
 
+const updateRoute = require ("./update.js");
+
 const cors = require("cors");
 
 app.use(cors({
@@ -28,6 +30,7 @@ async function startServer(){
    
     app.use(getRoute);
     app.use(postRoute);
+    app.use(updateRoute);
     
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
