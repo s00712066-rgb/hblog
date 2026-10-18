@@ -8,7 +8,9 @@ const getRoute = require("./blogs.js");
 
 const postRoute = require("./post.js");
 
-const updateRoute = require ("./update.js");
+const updateRoute = require("./update.js");
+
+const deleteRoute = require("./delete.js");
 
 const cors = require("cors");
 
@@ -31,6 +33,7 @@ async function startServer(){
     app.use(getRoute);
     app.use(postRoute);
     app.use(updateRoute);
+    app.use(deleteRoute);
     
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
