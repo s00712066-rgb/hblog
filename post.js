@@ -2,11 +2,11 @@ const express = require("express");
 
 const {validate} = require("./validation.js");
 
-const {connectDB} = require('./db.js');
+const requireAdmin = require('./auth.js');
 
 const router = express.Router();
 
-router.post('/api/posts', (req,res) => {
+router.post('/api/posts',requireAdmin, async (req,res) => {
     
  const error = validate(req.body);
  if(error){
@@ -22,7 +22,6 @@ router.post('/api/posts', (req,res) => {
     createdAt: new Date()
   }
   
-  async function post(){
     try{
      const db = req.app.locals.db;
      
@@ -38,9 +37,6 @@ router.post('/api/posts', (req,res) => {
       console.error(error);
       return res.status(500).json({message: "Something went wrong"});      
     }
-  }
-  
-  post();
  }
 });
 
