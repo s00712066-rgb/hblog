@@ -4,9 +4,11 @@ const {validate} = require('./validation.js');
 
 const {ObjectId} = require("mongodb");
 
+const requireAdmin = require("./auth.js");
+
 const router = express.Router();
 
-router.patch('/api/posts/:id', async (req,res) => {
+router.patch('/api/posts/:id', requireAdmin, async (req,res) => {
   
   if (!ObjectId.isValid(req.params.id)){
     return res.status(400).json({message:"Invalid blog Id"});
